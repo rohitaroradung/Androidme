@@ -16,10 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BodyPartFragment extends Fragment {
+
+
+    public  BodyPartFragment()
+    {
+
+    }
     public static final String IMAGE_ID_LIST = "image_ids";
     public static final String LIST_INDEX = "list_index";
-    private List<Integer> mImageIds;
-    private int mListIndex;
+
     List<Integer> mlist;
     int mid;
     private static final String TAG = "BodyPartFragment";
@@ -27,8 +32,8 @@ public class BodyPartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if(savedInstanceState != null) {
-            mImageIds = savedInstanceState.getIntegerArrayList(IMAGE_ID_LIST);
-            mListIndex = savedInstanceState.getInt(LIST_INDEX);
+            mlist = savedInstanceState.getIntegerArrayList(IMAGE_ID_LIST);
+            mid = savedInstanceState.getInt(LIST_INDEX);
         }
 
 
@@ -58,7 +63,7 @@ public class BodyPartFragment extends Fragment {
     }
 
     public void setMid(int mid) {
-        if(mlist!=null)
+
         this.mid = mid;
     }
 
@@ -69,7 +74,7 @@ public class BodyPartFragment extends Fragment {
     
     @Override
     public void onSaveInstanceState(Bundle currentState) {
-        currentState.putIntegerArrayList(IMAGE_ID_LIST, (ArrayList<Integer>) mImageIds);
-        currentState.putInt(LIST_INDEX, mListIndex);
+        currentState.putIntegerArrayList(IMAGE_ID_LIST, (ArrayList<Integer>) mlist);
+        currentState.putInt(LIST_INDEX, mid);
     }
 }

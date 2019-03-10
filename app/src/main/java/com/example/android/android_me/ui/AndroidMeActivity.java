@@ -20,7 +20,7 @@ package com.example.android.android_me.ui;
 
 import android.app.Activity;
 
-import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -36,35 +36,45 @@ public class AndroidMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_me);
 
+
+
+
             // Create a new head BodyPartFragment
             BodyPartFragment headFragment = new BodyPartFragment();
+        int headIndex = getIntent().getIntExtra("headIndex", 0);
 
             // Set the list of image id's for the head fragment and set the position to the second image in the list
             headFragment.setMlist(AndroidImageAssets.getHeads());
-            headFragment.setMid(0);
+            headFragment.setMid(headIndex);
 
             // Add the fragment to its container using a FragmentManager and a Transaction
-            FragmentManager fragmentManager = getFragmentManager();
+            FragmentManager fragmentManager = getSupportFragmentManager();
 
-
-             fragmentManager.beginTransaction()
-                     .add(R.id.headpart, headFragment)
-                     .commit();
+            fragmentManager.beginTransaction()
+                   .add(R.id.headpart, headFragment)
+                    .commit();
 
             // Create and display the body and leg BodyPartFragments
 
             BodyPartFragment bodyFragment = new BodyPartFragment();
             bodyFragment.setMlist(AndroidImageAssets.getBodies());
+        int bodyIndex = getIntent().getIntExtra("bodyIndex", 0);
+            bodyFragment.setMid(bodyIndex);
             fragmentManager.beginTransaction()
                     .add(R.id.bodypart, bodyFragment)
                     .commit();
 
 
-         BodyPartFragment legFragment = new BodyPartFragment();
+            BodyPartFragment legFragment = new BodyPartFragment();
             legFragment.setMlist(AndroidImageAssets.getLegs());
+        int legIndex = getIntent().getIntExtra("legIndex", 0);
+            legFragment.setMid( legIndex);
             fragmentManager.beginTransaction()
                     .add(R.id.legpart, legFragment)
                     .commit();
+
+
+
 
 
 
